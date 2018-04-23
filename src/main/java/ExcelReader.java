@@ -54,7 +54,7 @@ public class ExcelReader {
     public void readDoc() throws IOException {
         for (int i = 0; i < rowNumbers; i++) {
             row = sheet.getRow(i);
-            text = row.getCell(cellNumbers).getStringCellValue();
+            text = row.getCell(0).getStringCellValue();
             arr[i] = text;
         }
         workbook.close();
