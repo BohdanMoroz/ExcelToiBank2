@@ -10,11 +10,14 @@ public class ExcelReader {
     private String text = "";
 
     private HSSFWorkbook workbook;
-    private HSSFSheet sheet;
-    private HSSFRow row;
+    private HSSFSheet currentSheet;
+    private HSSFRow currentRow;
 
-    private int rowNumbers;
+    private int firstRow;
+    private int lastRow;
 //    private int cellNumbers = 0;
+
+    private int arrayLength;
 
     private String[] arr;
 
@@ -22,8 +25,10 @@ public class ExcelReader {
         this.file = file;
         initWorkbook();
         initSheet();
-        calculateRowNumbers();
+        initFirstRow();
+        initLastRow();
 //        calculateCellNumbers();
+        calculateArrayLength();
         initArray();
     }
 
@@ -32,36 +37,47 @@ public class ExcelReader {
         workbook = new HSSFWorkbook(new FileInputStream(file));
     }
 
-    // Get first sheet in the file
+    // Get first currentSheet in the file
     private void initSheet() {
-        sheet = workbook.getSheetAt(0);
+        currentSheet = workbook.getSheetAt(0);
     }
 
-    // Get first row in the sheet
+    // Get first currentRow in the currentSheet
     private void initRow() {
-        row = sheet.getRow(0);
+        currentRow = currentSheet.getRow(0);
     }
 
-    private void calculateRowNumbers() {
-//        startRow = sheet.getFirstRowNum();
-        rowNumbers = sheet.getLastRowNum();
+    // Get currentRow to start for
+    private void initFirstRow() {
+        firstRow = currentSheet.getFirstRowNum();
     }
+
+
+    // Get currentRow to end by
+    private void initLastRow() {
+        lastRow = currentSheet.getLastRowNum();
+    }
+
+    // FIXME: try to improve statement
+    private void calculateArrayLength() {
+        arrayLength = lastRow - firstRow + 1;
+    }
+
 
     private void initArray() {
-        arr = new String[rowNumbers];
+        arr = new String[arrayLength];
     }
 
     public void readDoc() throws IOException {
-        for (int i = 0; i < rowNumbers; i++) {
-            row = sheet.getRow(i);
-            text = row.getCell(0).getStringCellValue();
-            arr[i] = text;
+        for (int i = firstRow, j = 0; i <= lastRow; i++, j++) {
+            currentRow = currentSheet.getRow(i);
+            arr[j] = currentRow.getCell(0).getStringCellValue();
         }
         workbook.close();
     }
 
     public void arrPrint() {
-        for (int i = 0; i < rowNumbers; i++) {
+        for (int i = 0; i < arr.length; i++) {
             System.out.println(arr[i]);
         }
     }
