@@ -13,12 +13,10 @@ public class ExcelReader {
     private HSSFSheet sheet;
     private HSSFRow row;
 
-    private int startRow;
     private int rowNumbers;
-    private int startCell;
-    private int cellNumbers = 0;
+//    private int cellNumbers = 0;
 
-    private String[][] arr;
+    private String[] arr;
 
     public ExcelReader(String file) throws IOException {
         this.file = file;
@@ -49,37 +47,22 @@ public class ExcelReader {
         rowNumbers = sheet.getLastRowNum();
     }
 
-//    private void calculateCellNumbers() {
-////        startCell = row.getFirstCellNum();
-//        initRow();
-//        cellNumbers = row.getLastCellNum();
-//    }
-
     private void initArray() {
-        arr = new String[rowNumbers][cellNumbers+1];
+        arr = new String[rowNumbers];
     }
 
     public void readDoc() throws IOException {
         for (int i = 0; i < rowNumbers; i++) {
             row = sheet.getRow(i);
-//            calculateCellNumbers();
-
-//            for (int j = 0; j < cellNumbers; j++) {
-//                text += row.getCell(j).getStringCellValue() +  "    ";
-                text = row.getCell(cellNumbers).getStringCellValue();
-                arr[i][cellNumbers] = text;
-//            }
-
-//            text += "\n";
+            text = row.getCell(cellNumbers).getStringCellValue();
+            arr[i] = text;
         }
         workbook.close();
     }
 
     public void arrPrint() {
         for (int i = 0; i < rowNumbers; i++) {
-            for (int j = 0; j <= cellNumbers; j++) {
-                System.out.println(arr[i][j]);
-            }
+            System.out.println(arr[i]);
         }
     }
 
