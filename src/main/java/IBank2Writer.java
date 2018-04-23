@@ -4,7 +4,7 @@ import java.io.PrintWriter;
 public class IBank2Writer {
     private String text;
     private PrintWriter writer;
-    private String fileName = "test.txt";
+    private String fileName = "./src/main/resources/test.txt";
     private String encoding = "UTF-8";
 
     public IBank2Writer(String text) throws IOException{
