@@ -21,6 +21,10 @@ public class ExcelReader {
 
     private String[] arr;
 
+    public ExcelReader() {
+        System.out.println("Hi from Spring!");
+    }
+
     public ExcelReader(String file) throws IOException {
         this.file = file;
         initWorkbook();

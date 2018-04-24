@@ -1,0 +1,31 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="ExceltoiBank2:war exploded">
+    <output-path>$PROJECT_DIR$/target/Excel to iBank2-1.0-SNAPSHOT</output-path>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="ExceltoiBank2" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: org.apache.poi:poi:3.12" />
+          <element id="library" level="project" name="Maven: commons-codec:commons-codec:1.9" />
+          <element id="library" level="project" name="Maven: org.apache.poi:poi-ooxml:3.12" />
+          <element id="library" level="project" name="Maven: org.apache.poi:poi-ooxml-schemas:3.12" />
+          <element id="library" level="project" name="Maven: org.apache.xmlbeans:xmlbeans:2.6.0" />
+          <element id="library" level="project" name="Maven: stax:stax-api:1.0.1" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-context:5.0.5.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-aop:5.0.5.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-beans:5.0.5.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-core:5.0.5.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-jcl:5.0.5.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-expression:5.0.5.RELEASE" />
+          <element id="library" level="project" name="Maven: org.freemarker:freemarker:2.3.23" />
+        </element>
+      </element>
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/target/Excel to iBank2-1.0-SNAPSHOT/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="javaee-facet-resources" facet="ExceltoiBank2/web/Web" />
+    </root>
+  </artifact>
+</component>
