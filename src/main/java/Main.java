@@ -19,8 +19,8 @@ public class Main {
 
 
 //        System.out.println(excelReader.getText());
-//        IBank2Writer iBank2Writer = new IBank2Writer(excelReader.getText());
-//        iBank2Writer.saveDoc();
+        IBank2Writer iBank2Writer = new IBank2Writer(excelReader.getArr());
+        iBank2Writer.saveDoc();
 
         System.out.println("Done!");
     }

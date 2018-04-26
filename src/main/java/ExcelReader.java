@@ -19,7 +19,7 @@ public class ExcelReader {
 
     private int arrayLength;
 
-    private String[] arr;
+    private String[][] arr;
 
     public ExcelReader() {
         System.out.println("Hi from Spring!");
@@ -69,25 +69,44 @@ public class ExcelReader {
 
 
     private void initArray() {
-        arr = new String[arrayLength];
+        arr = new String[arrayLength][3];
     }
 
+    //FIXME
     public void readDoc() throws IOException {
         for (int i = firstRow, j = 0; i <= lastRow; i++, j++) {
             currentRow = currentSheet.getRow(i);
-            arr[j] = currentRow.getCell(0).getStringCellValue();
+            for (int z = 0; z < 3; z++) {
+                arr[j][z] = getArrText(z);
+            }
         }
         workbook.close();
     }
 
+    private String getArrText(int i) {
+        switch (i) {
+            case 0: return Integer.toString( (int) currentRow.getCell(0).getNumericCellValue());
+            case 1: return currentRow.getCell(1).getStringCellValue();
+            case 2: return Integer.toString( (int) currentRow.getCell(2).getNumericCellValue());
+            default: return "NULL";
+        }
+    }
+
     public void arrPrint() {
         for (int i = 0; i < arr.length; i++) {
-            System.out.println(arr[i]);
+            for (int j = 0; j < 3; j++) {
+                System.out.print(arr[i][j] + "   ");
+            }
+            System.out.println("\n");
         }
     }
 
     public String getText() {
         return text;
+    }
+
+    public String[][] getArr() {
+        return arr;
     }
 
 }
