@@ -1,4 +1,5 @@
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class Main {
@@ -11,8 +12,8 @@ public class Main {
 //        excelReader.readDoc();
 //        excelReader.arrPrint();
 
-        ApplicationContext context = new ClassPathXmlApplicationContext("ApplicationContext.xml");
-        ExcelReader excelReader = (ExcelReader) context.getBean("ExcelReaderTest");
+        ApplicationContext context = new AnnotationConfigApplicationContext(AnnotationConfig.class);
+        ExcelReader excelReader = (ExcelReader) context.getBean(ExcelReader.class);
         excelReader.readDoc();
         excelReader.arrPrint();
 
