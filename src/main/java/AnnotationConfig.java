@@ -6,6 +6,6 @@ import java.io.IOException;
 public class AnnotationConfig {
     @Bean
     public ExcelReader excelReader() throws IOException {
-        return new ExcelReader("./src/main/resources/file.xls");
+        return new ExcelReader();
     }
 }
