@@ -6,6 +6,10 @@
         <fileset id="fileset" name="ApplicationContext" removed="false">
           <file>file://$MODULE_DIR$/src/main/resources/ApplicationContext.xml</file>
         </fileset>
+        <fileset id="fileset2" name="Spring Application Context" removed="false">
+          <file>file://$MODULE_DIR$/src/main/java/AnnotationConfig.java</file>
+          <file>file://$MODULE_DIR$/src/main/java/WebConfig.java</file>
+        </fileset>
       </configuration>
     </facet>
     <facet type="web" name="Web">

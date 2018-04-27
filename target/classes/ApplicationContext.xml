@@ -3,7 +3,7 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="ExcelReaderTest" class="ExcelReader">
+    <bean id="ExcelReaderTest" class="com.exceltoibank2.service.ExcelReader">
         <constructor-arg value="./src/main/resources/file.xls"/>
     </bean>
 
