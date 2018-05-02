@@ -8,12 +8,11 @@ import java.io.FileInputStream;
 import java.io.IOException;
 
 public class ExcelReader {
-    private String file;
-    private String text = "";
+    private ExcelFile file;
 
-    private HSSFWorkbook workbook;
-    private HSSFSheet currentSheet;
-    private HSSFRow currentRow;
+    private Object workbook;
+    private Object currentSheet;
+    private Object currentRow;
 
     private int firstRow;
     private int lastRow;
@@ -23,34 +22,22 @@ public class ExcelReader {
 
     private String[][] arr;
 
-    public ExcelReader() {
-        System.out.println("Hi from Spring!");
-    }
+//    public ExcelReader() {
+//        System.out.println("Hi from Spring!");
+//    }
 
-    public ExcelReader(String file) throws IOException {
+    public ExcelReader(ExcelFile file) throws IOException {
         this.file = file;
-        initWorkbook();
-        initSheet();
+//        initWorkbook();
+//        initSheet();
+        workbook = file.getWorkbook();
+        currentSheet = (HSSFSheet) file.getCurrentSheet();
+        currentRow = file.getCurrentRow();
         initFirstRow();
         initLastRow();
 //        calculateCellNumbers();
         calculateArrayLength();
         initArray();
-    }
-
-    // Get xls file
-    private void initWorkbook() throws IOException {
-        workbook = new HSSFWorkbook(new FileInputStream(file));
-    }
-
-    // Get first currentSheet in the file
-    private void initSheet() {
-        currentSheet = workbook.getSheetAt(0);
-    }
-
-    // Get first currentRow in the currentSheet
-    private void initRow() {
-        currentRow = currentSheet.getRow(0);
     }
 
     // Get currentRow to start for
@@ -61,7 +48,7 @@ public class ExcelReader {
 
     // Get currentRow to end by
     private void initLastRow() {
-        lastRow = currentSheet.getLastRowNum();
+        lastRow = ((HSSFSheet) currentSheet).getLastRowNum();
     }
 
     // FIXME: try to improve statement
@@ -77,19 +64,19 @@ public class ExcelReader {
     //FIXME
     public void readDoc() throws IOException {
         for (int i = firstRow, j = 0; i <= lastRow; i++, j++) {
-            currentRow = currentSheet.getRow(i);
+            currentRow = ((HSSFSheet) currentSheet).getRow(i);
             for (int z = 0; z < 3; z++) {
                 arr[j][z] = getArrText(z);
             }
         }
-        workbook.close();
+        ((HSSFWorkbook) workbook).close();
     }
 
     private String getArrText(int i) {
         switch (i) {
-            case 0: return Integer.toString( (int) currentRow.getCell(0).getNumericCellValue());
-            case 1: return currentRow.getCell(1).getStringCellValue();
-            case 2: return Integer.toString( (int) currentRow.getCell(2).getNumericCellValue());
+            case 0: return Integer.toString( (int) ((HSSFRow) currentRow).getCell(0).getNumericCellValue());
+            case 1: return ((HSSFRow) currentRow).getCell(1).getStringCellValue();
+            case 2: return Integer.toString( (int) ((HSSFRow) currentRow).getCell(2).getNumericCellValue());
             default: return "NULL";
         }
     }
@@ -101,10 +88,6 @@ public class ExcelReader {
             }
             System.out.println("\n");
         }
-    }
-
-    public String getText() {
-        return text;
     }
 
     public String[][] getArr() {
