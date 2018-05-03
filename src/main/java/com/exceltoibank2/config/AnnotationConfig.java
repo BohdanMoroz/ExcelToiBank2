@@ -9,7 +9,8 @@ import java.io.IOException;
 @Configuration
 public class AnnotationConfig {
     @Bean
-    public FileXLS excelReader() throws IOException {
-        return new FileXLS("./src/main/resources/file.xls");
+    public FileXLS fileXLS() throws IOException {
+//        return new FileXLS("./src/main/resources/file.xls");
+        return new FileXLS();
     }
 }

@@ -7,7 +7,7 @@ public interface ExcelFile {
     public void initSheet();
     public void initRow();
 
-    public Object getCurrentSheet();
-    public Object getCurrentRow();
-    public Object getWorkbook();
+//    public Object getCurrentSheet();
+//    public Object getCurrentRow();
+//    public Object getWorkbook();
 }
