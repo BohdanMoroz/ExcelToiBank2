@@ -1,15 +1,15 @@
 package com.exceltoibank2.service;
 
-public class TempName {
-    private int firstField;
+public class Pojo {
+    private String firstField;
     private String secondField;
-    private int thirdField;
+    private String thirdField;
 
-    public int getFirstField() {
+    public String getFirstField() {
         return firstField;
     }
 
-    public void setFirstField(int firstField) {
+    public void setFirstField(String firstField) {
         this.firstField = firstField;
     }
 
@@ -21,11 +21,11 @@ public class TempName {
         this.secondField = secondField;
     }
 
-    public int getThirdField() {
+    public String getThirdField() {
         return thirdField;
     }
 
-    public void setThirdField(int thirdField) {
+    public void setThirdField(String thirdField) {
         this.thirdField = thirdField;
     }
 }

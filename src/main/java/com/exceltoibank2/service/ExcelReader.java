@@ -1,36 +1,67 @@
 package com.exceltoibank2.service;
 
-import org.apache.poi.hssf.usermodel.HSSFRow;
-import org.apache.poi.hssf.usermodel.HSSFSheet;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
 
-import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ExcelReader {
-    private ExcelFile file;
+//    private ExcelFile file;
 
-    private String[][] arr;
+    private Workbook workbook;
+    private Sheet currentSheet;
+    private Row currentRow;
 
+    private int firstRow;
+    private int lastRow;
 
-    public ExcelReader(ExcelFile file) throws IOException {
-        this.file = file;
+    private Pojo pojo;
+
+    private List<Pojo> list = new ArrayList<Pojo>();
+
+    public ExcelReader() {
+        System.out.println("Hi, Spring! (From ExcelReader)");
     }
 
+    public ExcelReader(ExcelFile file) throws IOException {
+//        this.file = file;
+        workbook = file.getWorkbook();
+        currentSheet = file.getCurrentSheet();
+        currentRow = file.getCurrentRow();
+        initFirstRow();
+        initLastRow();
+    }
 
+    // Get currentRow to start for
+    private void initFirstRow() {
+        firstRow = currentSheet.getFirstRowNum();
+    }
 
+    // Get currentRow to end by
+    private void initLastRow() {
+        lastRow = currentSheet.getLastRowNum();
+    }
 
-//    public void arrPrint() {
-//        for (int i = 0; i < arr.length; i++) {
-//            for (int j = 0; j < 3; j++) {
-//                System.out.print(arr[i][j] + "   ");
-//            }
-//            System.out.println("\n");
-//        }
-//    }
-//
-//    public String[][] getArr() {
-//        return arr;
-//    }
+    public void readDoc() throws IOException {
+        for (int i = firstRow; i <= lastRow; i++) {
+            currentRow = currentSheet.getRow(i);
+
+            pojo = new Pojo();
+
+            pojo.setFirstField( Integer.toString( (int) currentRow.getCell(0).getNumericCellValue()) );
+            pojo.setSecondField( currentRow.getCell(1).getStringCellValue() );
+            pojo.setThirdField( Integer.toString( (int) currentRow.getCell(2).getNumericCellValue()) );
+
+            list.add(pojo);
+        }
+        workbook.close();
+    }
+
+    public List<Pojo> getList() {
+        return list;
+    }
 
 }

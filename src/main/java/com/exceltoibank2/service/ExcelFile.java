@@ -1,5 +1,9 @@
 package com.exceltoibank2.service;
 
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+
 import java.io.IOException;
 
 public interface ExcelFile {
@@ -7,7 +11,7 @@ public interface ExcelFile {
     public void initSheet();
     public void initRow();
 
-//    public Object getCurrentSheet();
-//    public Object getCurrentRow();
-//    public Object getWorkbook();
+    public Workbook getWorkbook();
+    public Sheet getCurrentSheet();
+    public Row getCurrentRow();
 }
