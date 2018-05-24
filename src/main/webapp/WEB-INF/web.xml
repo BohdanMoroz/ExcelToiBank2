@@ -7,4 +7,12 @@
 
     <display-name>SpringMVCFreeMarker</display-name>
 
+    <context-param>
+        <description>Location to store uloaded file</description>
+        <param-name>file-upload</param-name>
+        <param-value>
+            D:\Get\
+        </param-value>
+    </context-param>
+
 </web-app>

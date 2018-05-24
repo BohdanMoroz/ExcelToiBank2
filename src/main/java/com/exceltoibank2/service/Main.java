@@ -10,16 +10,16 @@ public class Main {
 
     public static void main(String args[]) throws Exception {
 
-        ApplicationContext context = new AnnotationConfigApplicationContext(AnnotationConfig.class);
-        FileXLSX fileXLSX = (FileXLSX) context.getBean(FileXLSX.class);
-        FileXLS fileXLS = (FileXLS) context.getBean(FileXLS.class);
-
-        ExcelReader excelReader = new ExcelReader(fileXLS);
-        excelReader.readDoc();
-
-        IBank2Writer iBank2Writer = new IBank2Writer(excelReader.getList());
-        iBank2Writer.saveDoc();
-
-        System.out.println("Done!");
+//        ApplicationContext context = new AnnotationConfigApplicationContext(AnnotationConfig.class);
+//        FileXLSX fileXLSX = (FileXLSX) context.getBean(FileXLSX.class);
+//        FileXLS fileXLS = (FileXLS) context.getBean(FileXLS.class);
+//
+//        ExcelReader excelReader = new ExcelReader(fileXLS);
+//        excelReader.readDoc();
+//
+//        IBank2Writer iBank2Writer = new IBank2Writer(excelReader.getList());
+//        iBank2Writer.saveDoc();
+//
+//        System.out.println("Done!");
     }
 }

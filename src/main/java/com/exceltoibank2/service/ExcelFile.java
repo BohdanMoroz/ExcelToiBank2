@@ -1,5 +1,6 @@
 package com.exceltoibank2.service;
 
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -7,7 +8,7 @@ import org.apache.poi.ss.usermodel.Workbook;
 import java.io.IOException;
 
 public interface ExcelFile {
-    public void initWorkbook() throws IOException;
+    public void initWorkbook() throws IOException, InvalidFormatException;
     public void initSheet();
     public void initRow();
 

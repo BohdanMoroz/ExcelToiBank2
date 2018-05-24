@@ -9,16 +9,14 @@ import java.io.IOException;
 
 @Configuration
 public class AnnotationConfig {
-    @Bean
-    public FileXLS fileXLS() throws IOException {
-        return new FileXLS("./src/main/resources/file.xls");
-//        return new FileXLS();
-    }
-
-    @Bean
-    public FileXLSX fileXLSX() throws IOException {
-        return new FileXLSX("./src/main/resources/file.xlsx");
-//        return new FileXLSX();
-    }
+//    @Bean
+//    public FileXLS fileXLS() throws IOException {
+//        return new FileXLS("D:/Java/ExceltoiBank2/src/main/resources/file.xls");
+//    }
+//
+//    @Bean
+//    public FileXLSX fileXLSX() throws IOException {
+////        return new FileXLSX("D:/Java/ExceltoiBank2/src/main/resources/file.xlsx");
+//    }
 
 }

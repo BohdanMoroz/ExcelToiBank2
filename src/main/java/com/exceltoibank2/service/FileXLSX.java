@@ -1,9 +1,11 @@
 package com.exceltoibank2.service;
 
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 
@@ -11,13 +13,14 @@ public class FileXLSX implements ExcelFile{
     private XSSFWorkbook workbook;
     private XSSFSheet currentSheet;
     private XSSFRow currentRow;
-    private String file;
+    private File file;
+//    private String file;
 
     public FileXLSX() {
         System.out.println("Hi from Spring!");
     }
 
-    public FileXLSX(String file) throws IOException {
+    public FileXLSX(File file) throws IOException, InvalidFormatException {
         this.file = file;
         initWorkbook();
         initSheet();
@@ -25,8 +28,9 @@ public class FileXLSX implements ExcelFile{
     }
 
     // Get xls file
-    public void initWorkbook() throws IOException {
-        workbook = new XSSFWorkbook(new FileInputStream(file));
+    public void initWorkbook() throws IOException, InvalidFormatException {
+        workbook = new XSSFWorkbook(file);
+//        workbook = new XSSFWorkbook(new FileInputStream(file));
     }
 
     // Get first currentSheet in the file

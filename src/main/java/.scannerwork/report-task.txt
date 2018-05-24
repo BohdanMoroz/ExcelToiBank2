@@ -1,0 +1,6 @@
+projectKey=ExceltoiBank2
+serverUrl=http://localhost:9000
+serverVersion=7.1.0.11001
+dashboardUrl=http://localhost:9000/dashboard/index/ExceltoiBank2
+ceTaskId=AWMtHTxTT9EYtA0SXji7
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AWMtHTxTT9EYtA0SXji7
