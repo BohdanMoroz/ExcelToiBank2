@@ -1,3 +1,5 @@
+// This class receive Excel file, and tries to fetch data form every row into separate POJO class called CardHolder.
+
 package com.exceltoibank2.service;
 
 import org.apache.poi.ss.usermodel.Row;
@@ -9,58 +11,55 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ExcelReader {
-//    private ExcelFile file;
 
-    private Workbook workbook;
+    private Workbook currentWorkbook;
     private Sheet currentSheet;
     private Row currentRow;
 
-    private int firstRow;
-    private int lastRow;
+    private int firstRowNumber;
+    private int lastRowNumber;
 
-    private Pojo pojo;
+    private CardHolder cardHolder;
 
-    private List<Pojo> list = new ArrayList<Pojo>();
-
-    public ExcelReader() {
-        System.out.println("Hi, Spring! (From ExcelReader)");
-    }
+    private List<CardHolder> list = new ArrayList<CardHolder>();
 
     public ExcelReader(ExcelFile file) throws IOException {
-//        this.file = file;
-        workbook = file.getWorkbook();
+        currentWorkbook = file.getCurrentWorkbook();
         currentSheet = file.getCurrentSheet();
         currentRow = file.getCurrentRow();
-        initFirstRow();
-        initLastRow();
+        initFirstRowNumber();
+        initLastRowNumber();
     }
 
-    // Get currentRow to start for
-    private void initFirstRow() {
-        firstRow = currentSheet.getFirstRowNum();
+    // Initialize the first row number to start for
+    // THINK:   most of time the first row number is equal to 0
+    private void initFirstRowNumber() {
+        firstRowNumber = currentSheet.getFirstRowNum();
     }
 
-    // Get currentRow to end by
-    private void initLastRow() {
-        lastRow = currentSheet.getLastRowNum();
+    // Initialize the last row number to end by
+    private void initLastRowNumber() {
+        lastRowNumber = currentSheet.getLastRowNum();
     }
 
+    // Fetch all information from every cell of Excel file, and put it into CardHolder
+    // FIXME:   make this method smaller
     public void readDoc() throws IOException {
-        for (int i = firstRow; i <= lastRow; i++) {
+        for (int i = firstRowNumber; i <= lastRowNumber; i++) {
             currentRow = currentSheet.getRow(i);
 
-            pojo = new Pojo();
+            cardHolder = new CardHolder();
 
-            pojo.setFirstField( Integer.toString( (int) currentRow.getCell(0).getNumericCellValue()) );
-            pojo.setSecondField( currentRow.getCell(1).getStringCellValue() );
-            pojo.setThirdField( Integer.toString( (int) currentRow.getCell(2).getNumericCellValue()) );
+            cardHolder.setFirstField( Integer.toString( (int) currentRow.getCell(0).getNumericCellValue()) );
+            cardHolder.setSecondField( currentRow.getCell(1).getStringCellValue() );
+            cardHolder.setThirdField( Integer.toString( (int) currentRow.getCell(2).getNumericCellValue()) );
 
-            list.add(pojo);
+            list.add(cardHolder);
         }
-        workbook.close();
+        currentWorkbook.close();
     }
 
-    public List<Pojo> getList() {
+    public List<CardHolder> getList() {
         return list;
     }
 

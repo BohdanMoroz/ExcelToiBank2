@@ -1,3 +1,6 @@
+// This class receive information about every card holder from list of POJO classes as parameter in constructor.
+// It tries to write this information into new file, and save it like iBank2.
+
 package com.exceltoibank2.service;
 
 import java.io.IOException;
@@ -6,23 +9,30 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class IBank2Writer {
-    private List<Pojo> list;
+    private List<CardHolder> list;
     private PrintWriter writer;
+
+    // THINK:   try to separate file name and file path
+    // FIXME:   change file type from .txt to .iBank2
     private String fileName = "./src/main/resources/test.txt";
+
+    // THINK:   is it right encoding for iBank2 ?
     private String encoding = "UTF-8";
 
-    private String config;
-
-    public IBank2Writer(List<Pojo> list) throws IOException{
-        this.list = new ArrayList<Pojo>(list);
+    public IBank2Writer(List<CardHolder> list) throws IOException{
+        this.list = new ArrayList<CardHolder>(list);
         writer = new PrintWriter(fileName, encoding);
     }
 
-//    private String getConfig() {
-//
-//    }
-
+    // Write and save an information into file
+    // FIXME:   make this mathod smaller
     public void saveDoc() {
+
+            writer.println("DATE_DOC=");
+            writer.println("NUM_DOC=");
+            writer.println("CLN_NAME=");
+            writer.println("PAYER_BANK_MFO=");
+            writer.println("PAYER_BANK_NAME=");
 
         //Think about using forEach
         for (int i = 0; i < 2; i++) {

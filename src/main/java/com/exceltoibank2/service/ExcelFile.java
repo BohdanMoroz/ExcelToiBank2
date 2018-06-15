@@ -1,3 +1,5 @@
+// Every class working with excel directly, must implement this interface for proper work of program.
+
 package com.exceltoibank2.service;
 
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
@@ -8,11 +10,13 @@ import org.apache.poi.ss.usermodel.Workbook;
 import java.io.IOException;
 
 public interface ExcelFile {
-    public void initWorkbook() throws IOException, InvalidFormatException;
-    public void initSheet();
-    public void initRow();
+    void initWorkbook() throws IOException, InvalidFormatException;
+    void initSheet();
+    void initRow();
 
-    public Workbook getWorkbook();
-    public Sheet getCurrentSheet();
-    public Row getCurrentRow();
+    // All code below are getters
+
+    Workbook getCurrentWorkbook();
+    Sheet getCurrentSheet();
+    Row getCurrentRow();
 }

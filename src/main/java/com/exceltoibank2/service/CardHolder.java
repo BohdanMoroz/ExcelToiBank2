@@ -1,6 +1,9 @@
+// This is the POJO class which contain information of only one Excel file row (entire).
+
 package com.exceltoibank2.service;
 
-public class Pojo {
+public class CardHolder {
+    // FIXME:   rename this fields!
     private String firstField;
     private String secondField;
     private String thirdField;
